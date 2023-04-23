@@ -1,0 +1,74 @@
+{% extends 'projects/base.html' %}
+{% block content %}
+{% load static %}
+
+  <main class="home">
+    <section class="hero-section text-center">
+      <div class="container container--narrow">
+        <div class="hero-section__box" >
+          <div class="text">
+            <img class="info" src="{% static 'images/info.svg' %}" alt="">
+          <dialog class="modal">
+            <div class="modal__inner">
+              <h2>Вы можете записаться к мастеру</h2>
+              <p>Тест </p>
+              <button class="closeModal btn btn--sub btn--lg">Закрыть</button>
+            </div>
+          </dialog>
+          <button class="openModal btn btn--sub btn--lg" style="margin: 0 610px">Записаться </button>
+          </div>
+
+          <img class='images' src="{% static 'images/girl.jpg.webp' %}" alt=""/>
+
+          <h2 >НАЙДИ СВОЕГО <span>МАСТЕРА</span></h2>
+        </div>
+
+        <div class="hero-section__search">
+          <form class="form" action="{% url 'profiles' %}" method="get">
+            <div class="form__field">
+              <label for="formInput#search">Search Developers </label>
+              <input class="input input--text" id="formInput#search" type="text" name="search_query"
+                value="{{ search_query }}"
+                placeholder="Введите данные мастера" />
+            </div>
+
+            <input class="btn btn--sub btn--lg" type="submit" value="Найти" />
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- Search Result: DevList -->
+    <section class="devlist">
+      <div class="container">
+        <div class="grid grid--three">
+          {% for profile in profiles %}
+          <div class="column card">
+            <div class="dev">
+              <a href="{% url 'user_profile' profile.id %}" class="card__body">
+                <div class="dev__profile">
+                  <img class="avatar avatar--md" src="{{ profile.profile_image.url }}" alt="image" />
+                  <div class="dev__meta">
+                    <h3>{{ profile.name }}</h3>
+                    <h5>{{ profile.short_info }}</h5>
+                  </div>
+                </div>
+                <p class="dev__info">
+                  {{ profile.bio|slice:100 }}...
+                </p>
+                <div class="dev__skills">
+                  {% for skill in profile.skill_set.all %}
+                  <span class="tag tag--pill tag--main">
+                    <small>{{skill|slice:'6'}}</small>
+                  </span>
+                  {% endfor %}
+                </div>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+  </main>
+{% endblock %}

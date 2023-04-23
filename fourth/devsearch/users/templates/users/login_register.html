@@ -1,0 +1,51 @@
+{% extends 'projects/base.html' %}
+{% block content %}
+{% load static %}
+
+  <div class="auth">
+      <div class="card">
+        <div class="auth__header text-center">
+          <a href="/">
+            <img src="{% static 'images/logo.svg' %}" alt="icon" />
+          </a>
+          <h3>Авторизация</h3>
+          <p>Привет супер-мастер!</p>
+        </div>
+
+        <form action="{% url 'login' %}" method="post" class="form auth__form">
+          {% csrf_token %}
+          <div class="form__field">
+            <label for="formInput#text">Логин: </label>
+            <input
+              class="input input--text"
+              id="formInput#text"
+              type="text"
+              name="username"
+              placeholder="Введите логин пользователя..."
+            />
+          </div>
+
+          <!-- Input:Password -->
+          <div class="form__field">
+            <label for="formInput#password">Пароль: </label>
+            <input
+              class="input input--password"
+              id="formInput#passowrd"
+              type="password"
+              name="password"
+              placeholder="••••••••"
+            />
+          </div>
+          <div class="auth__actions">
+            <input class="btn btn--sub btn--lg" type="submit" value="Войти" />
+            <a href="forgetpassword.html">Забыли пароль?</a>
+          </div>
+        </form>
+        <div class="auth__alternative">
+          <p>Don’t have an Account?</p>
+          <a href="signup.html">Sign Up</a>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

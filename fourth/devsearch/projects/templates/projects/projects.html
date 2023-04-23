@@ -1,46 +1,41 @@
 {% extends 'projects/base.html' %}
-{% load static %}
 {% block content %}
-  <!-- Header Section -->
 
   <!-- Main Section -->
   <main class="projects">
-    <section class="hero-section text-center">
-      <div class="container">
-        <div class="hero-section__box">
-          <h3>О нас </h3>
-          <div class="text">
-            <div class="img-static">
-              <img src="{% static 'images/hair.jpg' %}" alt="DevSearch Logo" />
-            </div>
-            <div class="text-static">
-              <p>Мы парикмахерская с большим спектром услуг
-            и высококвалифицированными мастерами.
-            Готовы предоставить Вам большой выбор услуг.
-          Будьте красивы и всегда на стиле вместе с нами.</p>
-              <p><u>Город: Жезказган</u></p>
-              <p><u>Наш адрес: Проспект Мира 24</u></p>
-              <p><u>Номер для связи: 8 777 111 11 11</u></p>
-            </div>
+<!--    <section class="hero-section text-center">-->
+<!--      <div class="container container&#45;&#45;narrow">-->
+<!--        <div class="hero-section__box">-->
+<!--          <h2>Найти <span>работу мастера</span></h2>-->
+<!--        </div>-->
 
-        </div>
-      </div>
-        </div>
-    </section>
+<!--        <div class="hero-section__search">-->
+<!--          <form class="form" action="{% url 'projects'%}" method="get">-->
+<!--            <div class="form__field">-->
+<!--              <label for="formInput#search">Найти работу </label>-->
+<!--              <input class="input input&#45;&#45;text" id="formInput#search" type="text" name="search_query"-->
+<!--                value='{{ search_query }}' placeholder="Введите название работы" />-->
+<!--            </div>-->
 
+<!--            <input class="btn btn&#45;&#45;sub btn&#45;&#45;lg" type="submit" value="Поиск" />-->
+<!--          </form>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
     <!-- Search Result: DevList -->
     <section class="projectsList">
       <div class="container">
         <div class="grid grid--three">
-
           {% for project in projects %}
           <div class="column">
             <div class="card project">
-              <a href="single-project.html" class="project">
-                <img class="project__thumbnail" src="{{ project.foto_image.url }}" alt="project thumbnail" />
+              <a href="{% url 'project' project.id %}" class="project">
+                <img class="project__thumbnail" src="{{ project.featured_image.url }}" alt="project thumbnail" />
                 <div class="card__body">
-                  <h3 class="project__title">{{project.fio}}</h3>
+                  <h3 class="project__title">{{ project.title }}</h3>
+                  <p><a class="project__author" href="{% url 'user_profile' project.owner.id %}">Автор: {{ project.owner.name }}</a></p>
                   <p class="project--rating">
+                    {{ project.description|truncatechars:150 }}
                   </p>
                   <div class="project__tags">
                     {% for tag in project.tags.all %}
@@ -58,6 +53,31 @@
         </div>
       </div>
     </section>
+
+    {% if projects.has_other_pages %}
+    <div class="pagination">
+      <ul class="container">
+
+        {% if projects.has_previous %}
+          <li><a href="?page={{ projects.previous_page_number }}" class="btn page-link">&lt;</a></li>
+        {% endif %}
+
+        {% for page in custom_range %}
+          {% if page == projects.number %}
+            <li><a href="?page={{page}}" class="btn page-link btn--sub">{{ page }}</a></li>
+          {% else %}
+            <li><a href="?page={{page}}" class="btn page-link">{{ page }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if projects.has_next %}
+          <li><a href="?page={{ projects.next_page_number }}" class="btn page-link">&gt;</a></li>
+        {% endif %}
+
+      </ul>
+    </div>
+    {% endif %}
+
   </main>
 
 {% endblock %}

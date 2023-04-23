@@ -6,8 +6,9 @@
 }
 
 .container--narrow {
-  width: 92%;
-  max-width: 120rem;
+  width: 100%;
+  max-width: 1360px;
+  position: relative;
 }
 
 @media screen and (min-width: 1000px) {
@@ -22,11 +23,11 @@
 
 @media screen and (min-width: 1200px) {
   .container {
-    width: 80%;
+    width: 90%;
   }
 
   .container--narrow {
-    width: 72%;
+    width: 100%;
   }
 }
 

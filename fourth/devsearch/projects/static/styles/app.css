@@ -10,8 +10,71 @@
   border: 2px solid var(--color-light);
 }
 
-img {
+.info{
+margin-left: 25px;
+}
+
+.text{
+    display: block;
+    width: 39%;
+    vertical-align: text-top;
+    margin-top: 40px;
+    position: absolute;
+}
+.text p1{
+    font-size: 40px;
+    margin: 530px;
+    color: black;
+}
+.text p{
+    margin-top: 25px;
+    font-weight: Montserrat;
+    font-size: 23px;
+    text-align: left;
+    margin-left: 70px;
+    text-decoration:underline;
+}
+
+.text p > img{
+    width:40px;
+}
+
+
+.images {
   width: 100%;
+
+}
+
+.modal{
+    border:0;
+    border-radius: 4px;
+    text-align: center;
+    margin:auto;
+    display:block;
+    transform: scale(.2);
+    opacity:0;
+    transition: all 0.3s linear;
+    visibility:hidden;
+    position:fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+}
+
+.modal[open]{
+    transform: scale(1);
+    opacity: 1;
+    visibility:visible;
+}
+
+.modal__inner{
+    padding: 1em 2em;
+}
+
+.modal::backdrop{
+    background-color: #252525;
+    opacity:0.8;
 }
 
 .tag > i.im {
@@ -32,17 +95,19 @@ img {
   position: sticky;
   z-index: 111;
   background-color: var(--color-sub);
-  padding: 1.5rem 0;
+  padding: 0.5rem 0;
 }
 
 .header > .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 150px;
+  padding-right: 150px;
 }
 
 .header__logo > img {
-  height: 3.8rem;
+  height: 5.8rem;
 }
 
 .header__nav > ul {
@@ -170,21 +235,24 @@ img {
 ========================*/
 
 .hero-section {
+  height: auto;
   display: flex;
   align-items: center;
-  background-color: var(--color-sub);
+  background-color: #dfd9d2;
+
 }
 
 .hero-section__box {
-  margin-bottom: 4rem;
+  margin-bottom: 20px;
 }
 
 .hero-section__box > h2,
 .hero-section__box > h2 > span {
   font-size: 4rem;
-  color: var(--color-light);
+  color: #2d2d39;
   line-height: 1.3;
   text-transform: uppercase;
+    padding-top:30px;
 }
 
 @media screen and (max-width: 1000px) {
@@ -438,22 +506,24 @@ img {
 }
 
 .singleProject__liveLink i {
-  display: inline-block;
+  display: flex;
   font-size: 1.6rem;
   margin-right: 1rem;
 }
 
 .singleProject__preview {
-  height: 50vh;
+  height: auto;
   object-fit: cover;
   object-position: top center;
   margin-bottom: 3rem;
   border-radius: 0.7rem;
+  width:60%;
 }
 
 .singleProject__developer {
   font-size: 1.8rem;
   font-weight: 500;
+  display: flex;
 }
 
 .singleProject__title {
@@ -486,8 +556,7 @@ img {
 ========================*/
 .projects > .hero-section {
   background: var(--color-sub-lighter);
-  width: 100%;
-  padding: 35px;
+  height: 42vh;
 }
 
 .projects .hero-section__box {
@@ -536,8 +605,8 @@ img {
 }
 
 .comments .form label {
-  position: absolute;
-  margin: -9999px;
+  /*position: absolute;
+  margin: -9999px;*/
 }
 
 .commentList {
@@ -844,40 +913,4 @@ img {
   color: var(--color-sub);
   margin-bottom: 1rem;
   margin-top: 2rem;
-}
-
-.text{
-  box-sizing: border-box;
-  display: flex;
-  margin-top: 30px;
-  border-radius: 3px;
-  justify-content: space-between;
-  /* position: relative;
-  right: 12em; */
-  border-radius: 10px;
-}
-
-.text .text-static{
-  background: #060608;
-  width: 600px;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-}
-
-.text .text-static p{
-  width: 100%;
-  margin: 20px;
-  padding-right: 30px;
-  font-size: 18px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  text-align: left;
-
-
-}
-
-.text .img-static img{
-  width: 100%;
-  height: 100%;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
 }

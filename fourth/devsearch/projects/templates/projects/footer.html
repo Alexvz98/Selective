@@ -1,0 +1,66 @@
+{% load static %}
+
+<footer id="footer" class="footer">
+    <div class="main-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="widget">
+                        <h5 class="widget-title">BeautyIndustry<span></span></h5>
+                        <p>Кратко описание компании.. </p>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="widget no-box">
+                        <h5 class="widget-title">Вкладки<span></span></h5>
+                        <ul class="thumbnail-widget">
+                            <li>
+                                <div class="thumb-content"><a href="{% url 'profiles' %}">Мастера</a></div>
+                            </li>
+                            <li>
+                                <div class="thumb-content"><a href="{% url 'projects' %}">Наши работы</a></div>
+                            </li>
+                              {% if request.user.is_authenticated %}
+                            <li>
+                                <div class="thumb-content"><a href="{% url 'account'%}">Мой аккаунт</a></div>
+                            </li>
+                            <li>
+                                <div class="thumb-content"><a href="{% url 'create-project'%}">Добавить работу</a></div>
+                            </li>
+                                <li class="header__menuItem"><a href="{% url 'logout' %}" class="btn btn--sub">Выйти</a></li>
+                                {% else %}
+                               <li class="header__menuItem"><a href="{% url 'login' %}" class="btn btn--sub">Войти</a></li>
+
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="widget no-box">
+                        <h5 class="widget-title">Наши контакты<span></span></h5>
+                        <p><a href="mailto:info@domain.com" title="glorythemes">beauty_industry@mail.ru</a></p>
+                        <ul class="social-footer2">
+                            <li class=""><a href="/" target="_blank" title="Facebook"><img alt="WhatsApp" width="30" height="30" src="{% static 'images/whatsapp.svg'%}"></a></li>
+                            <li class=""><a href="/" target="_blank" title="Facebook"><img alt="YouTube" width="30" height="30" src="{% static 'images/youtube.svg'%}"></a></li>
+                            <li class=""><a href="/" target="_blank" title="Facebook"><img alt="Instagram" width="30" height="30" src="{% static 'images/instagram.svg'%}"></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="copyright">
+                    <p>Copyright Company Name © 2023. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
